@@ -1,0 +1,56 @@
+import databutton as db
+import streamlit as st
+
+st.session_state['button_clicks']=0
+st.session_state['button_clicks']+=1
+
+cars = {'Audi':['Q8 SUV', 'RS5', 'TT', 'A4'],
+        'Porsche':['Taycan', 'Cayenne', 'Macan']
+       }
+colours = ['Red', 'White', 'Black', 'Blue']
+def car_price(mileage, make, model, colour):
+    price = 2000
+
+    if make == 'Audi':
+        match model:
+            case 'Q8 SUV':
+                price +=75295
+            case 'RS5':
+                price +=72015
+            case 'TT':
+                price +=35365
+            case 'A4':
+                price +=54025
+
+
+    if make == 'Porsche':
+        match model:
+            case 'Taycan':
+                price +=78200
+            case 'Cayenne':
+                price +=69400
+            case 'Macan':
+                price +=52400
+
+    price -=(mileage * 0.1)
+    colour_factor={'Red':500, 'White':-1000,'Black':+1000, 'Blue':+5000}
+    price+=colour_factor[colour]
+    return price
+
+thing= car_price(0,'Audi', 'Q8 SUV', 'Blue')
+mileage= st.slider(label='Please select your mileage', min_value=0, max_value=10000)
+st.write(mileage)
+make=st.selectbox(label="Please select your car make",
+    options=cars.keys(),
+    placeholder='Please select the Make')
+
+if make in cars.keys():
+    model=st.selectbox(label="Please select your model",
+                      options=cars[make],
+                      placeholder='Please select the Model')
+    colour=st.selectbox(label="Time to pick your colour!",
+                       options=colours)
+    if st.button('Click to predict!'):
+            prediction=car_price(mileage, make, model, colour)
+            st.title(f'£{prediction}')
+            st.balloons()
