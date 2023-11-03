@@ -1,0 +1,24 @@
+import databutton as db
+import streamlit as st
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+st.title("Welcome to the Vegetarian Meal Graph!")
+
+data = {'Dish Name': ['Veggie Burger', 'Mushroom Risotto', 'Veggie Lasagne','Veggie Sushi'],
+        'Popularity':  [17, 45, 30, 8],
+        'Tastiness':   [9, 9, 7, 8]
+       }
+
+cereal = pd.DataFrame(data)
+
+st.write(cereal)
+
+fig, ax = plt.subplots()
+
+y_selection = st.selectbox(label = "Pick Y", options=['Popularity', 'Tastiness'])
+sns.barplot(x='Dish Name', y=y_selection, data=cereal, ax=ax)
+
+st.pyplot(fig)
