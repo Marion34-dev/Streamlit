@@ -1,15 +1,19 @@
 import databutton as db
 import streamlit as st
 
+# Initializing and incrementing button click counters in session state
 st.session_state['button_clicks']=0
 st.session_state['button_clicks']+=1
 
 cars = {'Audi':['Q8 SUV', 'RS5', 'TT', 'A4'],
         'Porsche':['Taycan', 'Cayenne', 'Macan']
        }
+
 colours = ['Red', 'White', 'Black', 'Blue']
+
 def car_price(mileage, make, model, colour):
-    price = 2000
+    price = 2000     # Base price
+
 
     if make == 'Audi':
         match model:
@@ -37,20 +41,28 @@ def car_price(mileage, make, model, colour):
     price+=colour_factor[colour]
     return price
 
+# Example usage of the car_price function
 thing= car_price(0,'Audi', 'Q8 SUV', 'Blue')
+
+# Collecting user inputs using Streamlit widgets
 mileage= st.slider(label='Please select your mileage', min_value=0, max_value=10000)
 st.write(mileage)
 make=st.selectbox(label="Please select your car make",
     options=cars.keys(),
     placeholder='Please select the Make')
 
+# Displaying additional options based on the selected car make
 if make in cars.keys():
     model=st.selectbox(label="Please select your model",
                       options=cars[make],
                       placeholder='Please select the Model')
     colour=st.selectbox(label="Time to pick your colour!",
                        options=colours)
+
+    # Triggering the car_price function when the button is clicked
     if st.button('Click to predict!'):
             prediction=car_price(mileage, make, model, colour)
+
+            # Displaying the predicted price and showing balloons animation
             st.title(f'£{prediction}')
             st.balloons()
