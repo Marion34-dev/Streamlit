@@ -12,13 +12,20 @@ data = {'Dish Name': ['Veggie Burger', 'Mushroom Risotto', 'Veggie Lasagne','Veg
         'Tastiness':   [9, 9, 7, 8]
        }
 
-cereal = pd.DataFrame(data)
+# Create a DataFrame (two dimensional tabular data structure) using the sample data
+food = pd.DataFrame(data)
 
-st.write(cereal)
+# Display the DataFrame
+st.write(food)
 
+# Create a matplotlib figure (top level container) and axis (subplot with data)
 fig, ax = plt.subplots()
 
+# Allow the user to select between 'Popularity' and 'Tastiness' for the Y-axis
 y_selection = st.selectbox(label = "Pick Y", options=['Popularity', 'Tastiness'])
-sns.barplot(x='Dish Name', y=y_selection, data=cereal, ax=ax)
 
+# Create a bar plot (graph repesentation) using seaborn with the selected Y-axis and display it on the matplotlib axis
+sns.barplot(x='Dish Name', y=y_selection, data=food, ax=ax)
+
+# Display the matplotlib figure
 st.pyplot(fig)
