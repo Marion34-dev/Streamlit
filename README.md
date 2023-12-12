@@ -10,4 +10,4 @@ If you have an account (or if you are interested in signing up), you can see my 
 
 https://github.com/Marion34-dev/streamlit/assets/125993993/4a4dfd51-37df-4b41-93ea-501ec6acf667
 
-![Screenshot 2023-11-03 at 15 01 30](https://github.com/Marion34-dev/streamlit/assets/125993993/ac5f5b4b-3256-4af2-a452-082c4615abbf)
+https://github.com/Marion34-dev/streamlit/assets/125993993/56df242f-0109-42c6-96d0-94cdf7624b31
