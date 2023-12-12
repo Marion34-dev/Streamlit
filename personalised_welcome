@@ -1,11 +1,13 @@
 import databutton as db
 import streamlit as st
 
-
+# Get user information using databutton
 user = db.user.get()
+
 name = user.name if user.name else "you"
 
 st.title(f"Hello, {name}!")
+
 if 'button_clicks' not in st.session_state:
     if st.button("Click me"):
         button_display= st.balloons() 
